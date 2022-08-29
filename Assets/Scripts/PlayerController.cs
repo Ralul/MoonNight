@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     {
         if(moveHorizontal > 0.1f || moveHorizontal < 0.1f)
         {
-            rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);  
-         
+            rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
+            Debug.Log(moveHorizontal * moveSpeed);
         }
 
         if (!isJumping && moveVertical > 0.1f)
