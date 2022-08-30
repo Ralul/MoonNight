@@ -260,14 +260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed3432d2ed484345ba61d73dd00706b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  jumpForce: 10
+  speed: 10
+  jumpForce: 12
   feetpos: {fileID: 837863249}
   checkRadius: 0.3
   wahtIsGround:
     serializedVersion: 2
     m_Bits: 64
-  jumpTime: 0.35
+  jumpTime: 0.4
 --- !u!1 &559083839
 GameObject:
   m_ObjectHideFlags: 0

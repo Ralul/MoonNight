@@ -33,6 +33,16 @@ public class PlayerController : MonoBehaviour
     {
         isGroundet = Physics2D.OverlapCircle(feetpos.position, checkRadius, wahtIsGround);
 
+        if(moveInput > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if(moveInput < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+
         if(isGroundet == true && Input.GetKeyDown(KeyCode.Space))
         {
             isJumping = true;
