@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMoveScript : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    private float moveSpeed = 3;
+    private float moveSpeed = 10;
     private float jumpforce = 30f;
     private bool isJumping;
 
@@ -24,7 +24,7 @@ public class PlayerMoveScript : MonoBehaviour
         {
             
 
-            transform.position += transform.right * (Time.deltaTime * 5);
+            transform.position += transform.right * (Time.deltaTime * moveSpeed);
 
             Debug.Log("Right");
 
@@ -33,7 +33,7 @@ public class PlayerMoveScript : MonoBehaviour
         {
             
 
-            transform.position -= transform.right * (Time.deltaTime * 5);
+            transform.position -= transform.right * (Time.deltaTime * moveSpeed);
 
             Debug.Log("Left");
 
