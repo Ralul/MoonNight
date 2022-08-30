@@ -49,10 +49,8 @@ public class PlayerMoveScript : MonoBehaviour
         {
             Debug.Log("Jump");
 
-            rb2d.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector2(0f, jumpforce), ForceMode2D.Impulse);
 
-            Debug.Log(time);
-            time++;
         }
        
     }
