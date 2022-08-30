@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveScript : MonoBehaviour
+public class BetterPlayerMoveScript : MonoBehaviour
 {
     Rigidbody2D rb2d;
     private float moveSpeed = 10;
     private float jumpforce = 30f;
+    private float Jumpinfly = 10f;
     private bool isJumping;
+    private float jumpTimeCounter;
+    private float jumpTime;
 
     private float time = 0;
 
@@ -42,6 +45,8 @@ public class PlayerMoveScript : MonoBehaviour
 
     }
 
+
+
     //Put physica based movement in here
     private void FixedUpdate()
     {
@@ -52,7 +57,11 @@ public class PlayerMoveScript : MonoBehaviour
             rb2d.AddForce(new Vector2(0f, jumpforce), ForceMode2D.Impulse);
 
         }
-       
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            rb2d.AddForce(new Vector2(0f, Jumpinfly), ForceMode2D.Impulse);
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -70,4 +79,5 @@ public class PlayerMoveScript : MonoBehaviour
             isJumping = true;
         }
     }
+
 }

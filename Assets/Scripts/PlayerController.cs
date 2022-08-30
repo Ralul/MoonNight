@@ -4,60 +4,58 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody2D rb;
+    public float speed;
+    public float jumpForce;
+    private float moveInput;
 
-    private Rigidbody2D rb2D;
+    private bool isGroundet;
+    public Transform feetpos;
+    public float checkRadius;
+    public LayerMask wahtIsGround;
 
-    private float moveSpeed;
-    private float jumpforce;
+    private float jumpTimeCounter;
+    public float jumpTime;
     private bool isJumping;
-    private float moveHorizontal;
-    private float moveVertical;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        rb2D = gameObject.GetComponent<Rigidbody2D>();
-
-        moveSpeed = 2.5f;
-        jumpforce = 30f;
-        isJumping = false;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        moveInput = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+    }
+
     void Update()
     {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        moveVertical = Input.GetAxisRaw("Vertical");
-    }
+        isGroundet = Physics2D.OverlapCircle(feetpos.position, checkRadius, wahtIsGround);
 
-    void FixedUpdate()
-    {
-        if (moveHorizontal > 0.1f || moveHorizontal < 0.1f)
-        {
-            rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
-            Debug.Log(moveHorizontal * moveSpeed);
-        }
-
-        if (!isJumping && moveVertical > 0.1f)
-        {
-            rb2D.AddForce(new Vector2(0f, moveVertical * jumpforce), ForceMode2D.Impulse);
-        }
-
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            isJumping = false;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
+        if(isGroundet == true && Input.GetKeyDown(KeyCode.Space))
         {
             isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb.velocity = Vector2.up * jumpForce;
+        }
+
+        if(Input.GetKey(KeyCode.Space) && isJumping == true)
+        {
+            if(jumpTimeCounter > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
         }
     }
 
