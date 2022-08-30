@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(moveHorizontal > 0.1f || moveHorizontal < 0.1f)
+        if (moveHorizontal > 0.1f || moveHorizontal < 0.1f)
         {
             rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
             Debug.Log(moveHorizontal * moveSpeed);
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform")
         {
             isJumping = false;
         }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform")
         {
             isJumping = true;
         }
